@@ -8,6 +8,9 @@
 - [ETL Functions](#etl-functions)
 - [API Resources](#api-resources)
 - [Database Components](#database-components)
+  - [Script to create employees table](#script-to-create-employees-table)
+  - [Script to create departments table](#script-to-create-departments-table)
+  - [Script to create jobs table](#script-to-create-jobs-table)
 - [Knime Features](#knime-features)
   - [Backup in AVRO format](#backup-in-avro-format)
   - [Restore backup with AVRO files](#restore-backup-with-avro-files)
@@ -103,12 +106,85 @@ SELECT * FROM dbo.employees
 SELECT * FROM dbo.departments
 SELECT * FROM dbo.jobs
 ```
+## Script to create employees table
+```sql
+USE <databasename>
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[employees](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[name] [varchar](255) NULL,
+	[datetime] [varchar](255) NULL,
+	[department_id] [int] NULL,
+	[job_id] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+```
+
+## Script to create departments table
+```sql
+USE <databasename>
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[departments](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[department] [varchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+```
+
+## Script to create jobs table
+```sql
+USE <databasename>
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[jobs](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[job] [varchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+```
 
 # Knime Features
 
-There are two special features.
+There are two special features stored in */files/features*:
+https://github.com/williamcasasjllo/codin-challenge-globant/tree/main/files/features
+
+Backups are stored on */files/avro/backups* path:
+https://github.com/williamcasasjllo/codin-challenge-globant/tree/main/files/avro/backups
 
 ## Backup in AVRO format
+
 
 Knime workflow *BACKUP_DB_AVRO_FORMAT_V1.knwf* let to get the data from tables and write on a AVRO format.
 
