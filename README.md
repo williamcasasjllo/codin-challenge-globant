@@ -1,6 +1,6 @@
-# Globant Codin Challenge #
+# Globant Coding Challenge #
 
-- [Globant Codin Challenge](#globant-codin-challenge)
+- [Globant Coding Challenge](#globant-coding-challenge)
 - [Components and Libraries](#components-and-libraries)
   - [Components](#components)
   - [Libraries](#libraries)
